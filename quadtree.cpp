@@ -51,7 +51,7 @@ struct QuadTree {
 			return;
 		}
 
-		//Variables to initialize the 4 node children  
+		//Variables to initialize the 4 node children, we split the space in four.  
 		float bt[2] = { ptr->begin[0],ptr->begin[1] };
 		float et[2] = { ptr->end[0],ptr->end[1] };
 		float bt2[2] = { ptr->begin[0],ptr->begin[1] };
@@ -59,7 +59,7 @@ struct QuadTree {
 		float difX = abs(ptr->begin[0] - ptr->end[0]);
 		float difY = abs(ptr->begin[1] - ptr->end[1]);
 
-
+		//For every children we will find out where its quadrant begins and where it ends
 		//First children
 		et[0] = et[0] - (difX / 2);
 		et[1] = et[1] + (difY / 2);
@@ -95,7 +95,7 @@ struct QuadTree {
 		init(ptr->quad[3], d - 1);
 	}
 
-	void add2(Node* ptr, float x, float y) {
+	void add2(Node* ptr, float x, float y) {  //We search which quadrant will be getting the new point, then we divide it
 
 		ptr->num += 1;		//We increase a point
 		if (!ptr->quad[0]) {			//If it is leaf node
@@ -125,7 +125,7 @@ struct QuadTree {
 	}
 };
 
-void DFS(Node* ptr) {			//We print the tree with null values
+void DFS(Node* ptr) {			//We print the tree with no null values
 	if (!ptr) {
 		return;
 	}
